@@ -33,7 +33,7 @@ function Header() {
           <img className="img-fluid" src="/projector_logo.png" alt="Logo" />
         </div>
         <div className="d-flex justify-content-end align-items-center">
-          <p className="mb-0 me-2">Bienvenue: {user ? user.username : null}</p>
+          <p className="mb-0 me-2 fw-semibold">Bienvenue: <span className="fw-bold text-success">{user ? user.username : null}</span></p>
           <button className="btn btn-danger me-4" onClick={(e) => logout()}>Deconnecter</button>
         </div>
       </div>
