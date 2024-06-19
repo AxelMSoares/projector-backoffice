@@ -62,13 +62,9 @@ function Users() {
     }
 
     async function confirmEditUser(uuid) {
-        const username = document.querySelector(`input[value="${editingUser.username}"]`).value;
-        const email = document.querySelector(`input[value="${editingUser.email}"]`).value;
         const statut = document.querySelector('select').value;
 
         const data = {
-            username: username,
-            email: email,
             statut: statut
         }
 
@@ -100,13 +96,7 @@ function Users() {
                         <tbody>
                             {filteredUsers.map((user) => (
                                 <tr key={user.uuid}>
-                                    <td>
-                                        {editingUser && editingUser.uuid === user.uuid ? (
-                                            <input type="text" defaultValue={user.username} />
-                                        ) : (
-                                            user.username
-                                        )}
-                                    </td>
+                                    <td>{user.username}</td>
                                     <td>
                                         {editingUser && editingUser.uuid === user.uuid ? (
                                             <select defaultValue={user.statut}>
@@ -119,13 +109,7 @@ function Users() {
                                         )}
                                     </td>
                                     <td>{dateToFrench(user.CREATED)}</td>
-                                    <td>
-                                        {editingUser && editingUser.uuid === user.uuid ? (
-                                            <input type="text" defaultValue={user.email} />
-                                        ) : (
-                                            user.email
-                                        )}
-                                    </td>
+                                    <td>{user.email}</td>
                                     <td>{user.lastLogin ? dateToFrench(user.lastLogin) : "L'utilisateur ne s'est jamais connecté."}</td>
                                     <td className="d-flex">
                                         {editingUser && editingUser.uuid === user.uuid ? (
