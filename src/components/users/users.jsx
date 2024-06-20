@@ -10,7 +10,7 @@ function Users() {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [search, setSearch] = useState('');
     const [msg, setMsg] = useState('');
-    const [jwt, setJwt] = useState(localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null);
+    const [jwt, setJwt] = useState(Cookies.get('jwt') ? Cookies.get('jwt') : null);
     const [userToDelete, setUserToDelete] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [editingUser, setEditingUser] = useState(null);

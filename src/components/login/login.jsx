@@ -45,9 +45,9 @@ function Login({ onConnect }) {
         // Set the connected state to true
         onConnect(true);
 
-        // Save the token and user data in the local storage
-        localStorage.setItem('jwt', response.token);
-        localStorage.setItem('userData', JSON.stringify(response));
+        // Save the token and user data in the cookies
+        Cookies.set('jwt', response.token);
+        Cookies.set('userData', JSON.stringify(response));
 
         // Redirect the user to the home page
         window.location.href = '/';

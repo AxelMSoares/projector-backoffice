@@ -4,10 +4,11 @@ import { createCategories } from '../../api/categories/createCategorie';
 import { updateCategories } from '../../api/categories/updateCategories';
 import { deleteCategorie } from '../../api/categories/deleteCategorie';
 import { useCSRFToken } from '../../context/CSRFTokenContext';
+import Cookies from 'js-cookie';
 
 function Categories() {
     const [categories, setCategories] = useState([]);
-    const [jwt, setJwt] = useState(localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null);
+    const [jwt, setJwt] = useState(Cookies.get('jwt') ? Cookies.get('jwt') : null);
     const csrfToken = useCSRFToken();
     const [search, setSearch] = useState('');
     const [addingNewCategory, setAddingNewCategory] = useState(false);

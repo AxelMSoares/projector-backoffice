@@ -7,6 +7,7 @@ import Projects from './components/projects/projects';
 import Users from './components/users/users';
 import Categories from './components/categories/categories';
 import ProjectStatus from './components/status/projectStatus';
+import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -15,17 +16,17 @@ function App() {
   const onConnectChangeHandler = (value) => setConnected(value); // Update the state hook
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = Cookies.get('jwt');
     try {
       const decoded = jwtDecode(token);
       if (decoded.exp < Date.now() / 1000) {
-        localStorage.removeItem('jwt');
+        Cookies.remove('jwt');
         setConnected(false);
       } else {
         setConnected(true);
       }
     } catch (err) {
-      localStorage.removeItem('jwt');
+      Cookies.remove('jwt');
       setConnected(false);
     }
   }, []);

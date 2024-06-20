@@ -7,7 +7,7 @@ import { useCSRFToken } from "../../context/CSRFTokenContext";
 
 function ProjectStatus() {
     const [projectStatus, setProjectStatus] = useState([]);
-    const [jwt, setJwt] = useState(localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null);
+    const [jwt, setJwt] = useState(Cookies.get('jwt') ? Cookies.get('jwt') : null);
     const [showModal, setShowModal] = useState(false);
     const [statusToDelete, setStatusToDelete] = useState(null);
     const [statusToEdit, setStatusToEdit] = useState(null);

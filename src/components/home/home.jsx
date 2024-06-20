@@ -7,14 +7,14 @@ function Home() {
 
     // If the user isn't connected, redirect him to the login page
     useEffect(() => {
-        if (!localStorage.getItem('jwt') || !localStorage.getItem('userData')) {
+        if (!Cookies.get('jwt') || !Cookies.get('userData')) {
             window.location.href = '/admin-connection';
             return null;
         }
 
-        if (localStorage.getItem('jwt') && localStorage.getItem('userData')) {
-            setJwt(localStorage.getItem('jwt'));
-            setUser(JSON.parse(localStorage.getItem('userData')));
+        if (Cookies.get('jwt') && Cookies.get('userData')) {
+            setJwt(Cookies.get('jwt'));
+            setUser(JSON.parse(Cookies.get('userData')));
         }
 
     }, []);
