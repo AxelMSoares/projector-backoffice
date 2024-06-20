@@ -52,7 +52,12 @@ function Projects() {
     }
 
     async function confirmDeleteProject() {
-        await deleteProject(jwt, csrfToken, projectToDelete);
+        const response = await deleteProject(jwt, csrfToken, projectToDelete);
+        if(response.error){
+            setMsg(response.error);
+            return;
+        }
+        setMsg('Le projet a été supprimé avec succès.');
         fetchProjectsData();
         setShowModal(false);
     }

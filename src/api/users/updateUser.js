@@ -1,5 +1,5 @@
 export async function updateUser(jwt, csrfToken, uuid, data) {
-
+    
     try {
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/update/${uuid}`, {
             method: 'PUT',

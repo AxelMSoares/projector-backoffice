@@ -19,7 +19,9 @@ function Users() {
     const statut = ['normal', 'moderateur', 'administrateur'];
 
     useEffect(() => {
-        fetchAllUsers();
+        if (jwt && csrfToken) {
+            fetchAllUsers();
+        }
     }, []);
 
     useEffect(() => {
@@ -66,6 +68,10 @@ function Users() {
         const statut = document.querySelector('select').value;
 
         const data = {
+            username: editingUser.username,
+            email: editingUser.email,
+            bio: editingUser.bio,
+            profilePicture: editingUser.profilePicture,
             statut: statut
         }
 
