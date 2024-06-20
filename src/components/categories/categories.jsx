@@ -18,7 +18,9 @@ function Categories() {
     const [msg, setMsg] = useState('');
 
     useEffect(() => {
-        fetchAllCategories();
+        if (csrfToken && jwt) {
+            fetchAllCategories();
+        }
     }, []);
 
     useEffect(() => {
@@ -54,8 +56,8 @@ function Categories() {
 
     async function confirmEditCategory(id, category_name) {
         await updateCategories(jwt, csrfToken, id, category_name);
-        fetchAllCategories();
         setEditingCategory(null);
+        fetchAllCategories();
         setMsg('Catégorie mise à jour avec succès');
     }
 
@@ -73,7 +75,7 @@ function Categories() {
 
     return (
         <>
-            <div style={{maxWidth:"1000px", margin: "auto"}}>
+            <div style={{ maxWidth: "1000px", margin: "auto" }}>
                 <h1 className='mb-4 mt-4 ms-5'>Categories:</h1>
                 <button className='btn btn-primary ms-5 mb-4' onClick={() => setAddingNewCategory(!addingNewCategory)}>{addingNewCategory ? 'Annuler' : 'Ajouter une nouvelle catégorie'}</button>
                 {addingNewCategory && <div className='mb-4'>

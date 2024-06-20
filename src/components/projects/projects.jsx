@@ -16,7 +16,7 @@ function Projects() {
     const [msg, setMsg] = useState('');
 
     useEffect(() => {
-        if (jwt) {
+        if (jwt && csrfToken) {
             fetchProjectsData();
         }
     }, []);
