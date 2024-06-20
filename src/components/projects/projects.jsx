@@ -3,11 +3,12 @@ import { getAllProjects } from "../../api/project/getAllProjects";
 import { deleteProject } from "../../api/project/deleteProject";
 import { useCSRFToken } from "../../context/CSRFTokenContext";
 import { dateToFrench } from "../../helpers/functions";
+import Cookies from 'js-cookie';
 
 function Projects() {
     const [projects, setProjects] = useState([]);
     const [filteredProjects, setFilteredProjects] = useState([]);
-    const [jwt, setJwt] = useState(Cookies.get('jwt') ? Cookies.get('jwt') : null);
+    const [jwt, setJwt] = useState(Cookies.get('adminJWT') ? Cookies.get('adminJWT') : null);
     const [search, setSearch] = useState('');
     const csrfToken = useCSRFToken();
     const [showModal, setShowModal] = useState(false);

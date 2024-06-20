@@ -4,13 +4,14 @@ import { deleteUser } from "../../api/users/deleteUser";
 import { updateUser } from "../../api/users/updateUser";
 import { useCSRFToken } from "../../context/CSRFTokenContext";
 import { dateToFrench } from "../../helpers/functions";
+import Cookies from "js-cookie";
 
 function Users() {
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [search, setSearch] = useState('');
     const [msg, setMsg] = useState('');
-    const [jwt, setJwt] = useState(Cookies.get('jwt') ? Cookies.get('jwt') : null);
+    const [jwt, setJwt] = useState(Cookies.get('adminJWT') ? Cookies.get('adminJWT') : null);
     const [userToDelete, setUserToDelete] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [editingUser, setEditingUser] = useState(null);

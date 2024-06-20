@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 
 function Categories() {
     const [categories, setCategories] = useState([]);
-    const [jwt, setJwt] = useState(Cookies.get('jwt') ? Cookies.get('jwt') : null);
+    const [jwt, setJwt] = useState(Cookies.get('adminJWT') ? Cookies.get('adminJWT') : null);
     const csrfToken = useCSRFToken();
     const [search, setSearch] = useState('');
     const [addingNewCategory, setAddingNewCategory] = useState(false);

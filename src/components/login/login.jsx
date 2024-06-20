@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getCSRFToken } from '../../api/getCSRFToken';
 import { login } from '../../api/login';
+import Cookies from 'js-cookie';
 
 function Login({ onConnect }) {
 
@@ -14,6 +15,10 @@ function Login({ onConnect }) {
             }, 5000);
         }
     }), [errorMsg];
+
+    if(Cookies.get('adminJWT') && Cookies.get('adminData')) {
+        window.location.href = '/';
+    }
 
     async function handleConnect(e) {
 
@@ -46,8 +51,8 @@ function Login({ onConnect }) {
         onConnect(true);
 
         // Save the token and user data in the cookies
-        Cookies.set('jwt', response.token);
-        Cookies.set('userData', JSON.stringify(response));
+        Cookies.set('adminJWT', response.token);
+        Cookies.set('adminData', JSON.stringify(response));
 
         // Redirect the user to the home page
         window.location.href = '/';

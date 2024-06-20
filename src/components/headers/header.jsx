@@ -1,5 +1,6 @@
 import Nav from "../headers/nav/nav";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 function Header() {
 
@@ -8,21 +9,21 @@ function Header() {
 
   // If the user isn't connected, redirect him to the login page
   useEffect(() => {
-    if (!Cookies.get('jwt') || !Cookies.get('userData')) {
+    if (!Cookies.get('adminJWT') || !Cookies.get('adminData')) {
       window.location.href = '/admin-connection';
       return null;
     }
 
-    if (Cookies.get('jwt') && Cookies.get('userData')) {
-      setJwt(Cookies.get('jwt'));
-      setUser(JSON.parse(Cookies.get('userData')));
+    if (Cookies.get('adminJWT') && Cookies.get('adminData')) {
+      setJwt(Cookies.get('adminJWT'));
+      setUser(JSON.parse(Cookies.get('adminData')));
     }
 
   }, []);
 
   async function logout() {
-    Cookies.remove('jwt');
-    Cookies.remove('userData');
+    Cookies.remove('adminJWT');
+    Cookies.remove('adminData');
     window.location.href = '/admin-connection';
   }
 

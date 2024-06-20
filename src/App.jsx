@@ -16,20 +16,47 @@ function App() {
   const onConnectChangeHandler = (value) => setConnected(value); // Update the state hook
 
   useEffect(() => {
-    const token = Cookies.get('jwt');
+    checkIfUserIsAdmin();
+    checkTheJwtToken();
+  }, []);
+
+  function checkTheJwtToken() {
+    const token = Cookies.get('adminJWT');
+
     try {
+
       const decoded = jwtDecode(token);
       if (decoded.exp < Date.now() / 1000) {
-        Cookies.remove('jwt');
+        Cookies.remove('adminJWT');
         setConnected(false);
-      } else {
-        setConnected(true);
+        return;
       }
+
+      setConnected(true);
+      return;
+
     } catch (err) {
-      Cookies.remove('jwt');
+      Cookies.remove('adminJWT');
       setConnected(false);
     }
-  }, []);
+  }
+
+  function checkIfUserIsAdmin() {
+
+    const user = Cookies.get('adminData');
+
+    if (user) {
+      const userData = JSON.parse(user);
+      if (userData.statut !== 'administrateur') {
+        setConnected(false);
+        return;
+      }
+
+      setConnected(true);
+
+    }
+
+  }
 
 
   const router = createBrowserRouter([
