@@ -25,12 +25,12 @@ function Login({ onConnect }) {
         e.preventDefault();
 
         const data = {
-            username: document.getElementById('login').value,
+            email: document.getElementById('email').value,
             pwd: document.getElementById('pwd').value
         };
 
         // Check if the fields are not empty
-        if (!data.username || !data.pwd) {
+        if (!data.email || !data.pwd) {
             setErrorMsg('Veuillez remplir tous les champs');
             return;
         }
@@ -66,8 +66,8 @@ function Login({ onConnect }) {
                     <img src="/projector_logo.png" alt="projector logo" />
                     <h1 className='h3 mb-3 fw-normal'>Connexion</h1>
                     <div className='form-floating mb-2'>
-                        <input className='form-control' type="text" name="login" id="login" placeholder='Utilisateur' />
-                        <label htmlFor="login">Utilisateur:</label>
+                        <input className='form-control' type="email" name="email" id="email" placeholder='Email' />
+                        <label htmlFor="email">Email:</label>
                     </div>
                     <div className='form-floating mb-4'>
                         <input className='form-control' type="password" name="pwd" id="pwd" placeholder='Mot de passe' />
