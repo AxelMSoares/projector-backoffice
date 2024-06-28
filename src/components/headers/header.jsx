@@ -24,6 +24,7 @@ function Header() {
   async function logout() {
     Cookies.remove('adminJWT');
     Cookies.remove('adminData');
+    Cookies.remove('AdminCSRFToken')
     window.location.href = '/admin-connection';
   }
 

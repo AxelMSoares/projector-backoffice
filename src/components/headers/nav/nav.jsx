@@ -47,7 +47,7 @@ function Nav() {
                 <Link to="/status-projets" className={status ? "nav-link active" : "nav-link"} onClick={(e) => {
                     resetBtns();
                     setStatus(true);
-                }}>Status Projets</Link>
+                }}>Statuts Projets</Link>
             </li>
         </ul>
     )

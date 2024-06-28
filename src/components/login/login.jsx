@@ -35,11 +35,12 @@ function Login({ onConnect }) {
             return;
         }
 
-        // Get the CSRF token
-        const token = await getCSRFToken();
 
         // Send the login request
-        const response = await login(data, token);
+        const response = await login(data);
+
+        // Get the csrfToken
+        const csrfToken = response.csrfToken;
 
         // Check if the user is an administrator
         if (response.statut !== "administrateur") {
@@ -50,9 +51,13 @@ function Login({ onConnect }) {
         // Set the connected state to true
         onConnect(true);
 
+        console.log(response);
+
         // Save the token and user data in the cookies
-        Cookies.set('adminJWT', response.token);
+        Cookies.set('adminJWT', response.jwtoken);
         Cookies.set('adminData', JSON.stringify(response));
+        Cookies.set('AdminCSRFToken', csrfToken);
+        
 
         // Redirect the user to the home page
         window.location.href = '/';

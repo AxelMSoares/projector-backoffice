@@ -69,12 +69,12 @@ function ProjectStatus() {
     return (
         <>
             <div style={{ maxWidth: "1000px", margin: "auto" }}>
-                <h1 className='mb-4 mt-4 ms-5'>Status:</h1>
-                <button className='btn btn-primary ms-5 mb-4' onClick={() => setAddingNewStatus(!addingNewStatus)}>{addingNewStatus ? 'Annuler' : 'Ajouter un nouveau status'}</button>
+                <h1 className='mb-4 mt-4 ms-5'>Statuts:</h1>
+                <button className='btn btn-primary ms-5 mb-4' onClick={() => setAddingNewStatus(!addingNewStatus)}>{addingNewStatus ? 'Annuler' : 'Ajouter un nouveau statuts'}</button>
                 {addingNewStatus && <div className='mb-4'>
                     <form>
                         <div className='mb-3'>
-                            <label htmlFor='status_name' className='form-label'>Nom du status:</label>
+                            <label htmlFor='status_name' className='form-label'>Nom du statuts:</label>
                             <input type='text' className='form-control' id='status_name' />
                         </div>
                         <button className='btn btn-primary' onClick={(e) => addNewStatus(e)}>Ajouter</button>
