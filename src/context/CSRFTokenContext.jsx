@@ -9,7 +9,7 @@ export const CSRFTokenProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchToken = async () => {
-            const token = Cookies.get('csrfToken');
+            const token = Cookies.get('AdminCSRFToken');
             if(token){
                 setCsrfToken(token);
             }

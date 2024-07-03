@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { getCSRFToken } from '../../api/getCSRFToken';
 import { login } from '../../api/login';
 import Cookies from 'js-cookie';
 
@@ -51,7 +50,6 @@ function Login({ onConnect }) {
         // Set the connected state to true
         onConnect(true);
 
-        console.log(response);
 
         // Save the token and user data in the cookies
         Cookies.set('adminJWT', response.jwtoken);
