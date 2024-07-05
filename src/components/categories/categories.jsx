@@ -5,6 +5,7 @@ import { updateCategories } from '../../api/categories/updateCategories';
 import { deleteCategorie } from '../../api/categories/deleteCategorie';
 import { useCSRFToken } from '../../context/CSRFTokenContext';
 import Cookies from 'js-cookie';
+import DOMPurify from 'dompurify';
 
 function Categories() {
     const [categories, setCategories] = useState([]);
@@ -100,9 +101,9 @@ function Categories() {
                             <div className='w-100 d-flex justify-content-center'><p>{category.id}</p></div>
                             <div className='w-100 d-flex justify-content-center'>
                                 {editingCategory && editingCategory.id === category.id ? (
-                                    <input type="text" defaultValue={category.category_name} />
+                                    <input type="text" defaultValue={DOMPurify.sanitize(category.category_name)} />
                                 ) : (
-                                    <p>{category.category_name}</p>
+                                    <p>{DOMPurify.sanitize(category.category_name)}</p>
                                 )}
                             </div>
                             <div className='w-100 d-flex justify-content-center'>

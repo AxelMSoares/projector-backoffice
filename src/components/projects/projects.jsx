@@ -4,6 +4,7 @@ import { deleteProject } from "../../api/project/deleteProject";
 import { useCSRFToken } from "../../context/CSRFTokenContext";
 import { dateToFrench } from "../../helpers/functions";
 import Cookies from 'js-cookie';
+import DOMPurify from "dompurify";
 
 function Projects() {
     const [projects, setProjects] = useState([]);
@@ -83,9 +84,9 @@ function Projects() {
                         <tbody>
                             {filteredProjects.map((project) => (
                                 <tr key={project.uuid}>
-                                    <td>{project.project_name}</td>
-                                    <td>{project.username}</td>
-                                    <td>{project.category_name}</td>
+                                    <td>{DOMPurify.sanitize(project.project_name)}</td>
+                                    <td>{DOMPurify.sanitize(project.username)}</td>
+                                    <td>{DOMPurify.sanitize(project.category_name)}</td>
                                     <td>{dateToFrench(project.project_created)}</td>
                                     <td className="d-flex">
                                         <button className="btn btn-danger" onClick={(e) => deleteProjectHandler(project.uuid)}>Supprimer</button>

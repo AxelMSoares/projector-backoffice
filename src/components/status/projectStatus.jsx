@@ -5,6 +5,7 @@ import { createProjectStatus } from "../../api/project_status/createProjectStatu
 import { updateProjectStatus } from "../../api/project_status/updateProjectStatus";
 import { useCSRFToken } from "../../context/CSRFTokenContext";
 import Cookies from "js-cookie";
+import DOMPurify from "dompurify";
 
 function ProjectStatus() {
     const [projectStatus, setProjectStatus] = useState([]);
@@ -92,15 +93,15 @@ function ProjectStatus() {
                             <div className='w-100 d-flex justify-content-center'><p>{status.id}</p></div>
                             <div className='w-100 d-flex justify-content-center'>
                                 {statusToEdit && statusToEdit.id === status.id ? (
-                                    <input type="text" defaultValue={status.status_name} />
+                                    <input type="text" defaultValue={DOMPurify.sanitize(status.status_name)} />
                                 ) : (
-                                    <p>{status.status_name}</p>
+                                    <p>{DOMPurify.sanitize(status.status_name)}</p>
                                 )}
                             </div>
                             <div className='w-100 d-flex justify-content-center'>
                                 {statusToEdit && statusToEdit.id === status.id ? (
                                     <>
-                                        <button className='btn btn-success me-2' onClick={() => confirmEditProjectStatus(status.id, document.querySelector(`input[value="${status.status_name}"]`).value)}>Confirmer</button>
+                                        <button className='btn btn-success me-2' onClick={() => confirmEditProjectStatus(status.id, document.querySelector(`input[value="${DOMPurify.sanitize(status.status_name)}"]`).value)}>Confirmer</button>
                                         <button className='btn btn-secondary' onClick={() => setStatusToEdit(null)}>Annuler</button>
                                     </>
                                 ) : (

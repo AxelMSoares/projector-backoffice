@@ -5,6 +5,7 @@ import { updateUser } from "../../api/users/updateUser";
 import { useCSRFToken } from "../../context/CSRFTokenContext";
 import { dateToFrench } from "../../helpers/functions";
 import Cookies from "js-cookie";
+import DOMPurify from "dompurify";
 
 function Users() {
     const [users, setUsers] = useState([]);
@@ -103,7 +104,7 @@ function Users() {
                         <tbody>
                             {filteredUsers.map((user) => (
                                 <tr key={user.uuid}>
-                                    <td>{user.username}</td>
+                                    <td>{DOMPurify.sanitize(user.username)}</td>
                                     <td>
                                         {editingUser && editingUser.uuid === user.uuid ? (
                                             <select defaultValue={user.statut}>
