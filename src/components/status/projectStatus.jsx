@@ -84,13 +84,11 @@ function ProjectStatus() {
                 {msg && <div className='alert alert-success'>{msg}</div>}
                 <ul className='list-group mb-5'>
                     <li className='list-group-item d-flex justify-content-around'>
-                        <div>Id:</div>
                         <div>Nom:</div>
                         <div>Actions:</div>
                     </li>
                     {projectStatus.map((status, index) => (
                         <li className='list-group-item d-flex justify-content-around' key={index}>
-                            <div className='w-100 d-flex justify-content-center'><p>{status.id}</p></div>
                             <div className='w-100 d-flex justify-content-center'>
                                 {statusToEdit && statusToEdit.id === status.id ? (
                                     <input type="text" defaultValue={DOMPurify.sanitize(status.status_name)} />

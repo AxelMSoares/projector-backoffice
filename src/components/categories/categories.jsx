@@ -92,13 +92,11 @@ function Categories() {
                 <input type="text" className="form-control mb-3" placeholder="Rechercher une catégorie..." onChange={(e) => setSearch(e.target.value)} />
                 <ul className='list-group mb-5'>
                     <li className='list-group-item d-flex justify-content-around'>
-                        <div>Id:</div>
                         <div>Nom:</div>
                         <div>Actions:</div>
                     </li>
                     {filteredCategories.length > 0 ? filteredCategories.map((category, index) => (
                         <li className='list-group-item d-flex justify-content-around' key={index}>
-                            <div className='w-100 d-flex justify-content-center'><p>{category.id}</p></div>
                             <div className='w-100 d-flex justify-content-center'>
                                 {editingCategory && editingCategory.id === category.id ? (
                                     <input type="text" defaultValue={DOMPurify.sanitize(category.category_name)} />
